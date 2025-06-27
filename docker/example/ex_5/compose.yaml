@@ -1,0 +1,20 @@
+# 版本
+version: "3.9"
+
+services:
+  web:
+    # 1.相对路径
+    # build: .
+    # 2.绝对路径
+    # build: /path/Dockerfile
+    # 3.上下文 ， context: . 此时上下文根目录为 ex_5
+    build:
+      context: .
+      dockerfile: build/Dockerfile
+    # 4. (错误)上下文 , ./build 此时上下文目录为 build， 下没有app.py文件，Dockerfile 无法使用上下文之外的文件 ENV FLASK_APP=../app.py
+    # build:
+      # context: ./build
+    # 5.git项目路径
+
+    ports:
+      - "8000:5000"
