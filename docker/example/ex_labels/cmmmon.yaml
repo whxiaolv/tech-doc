@@ -1,0 +1,9 @@
+# common.yml
+x-global-labels: &global_labels
+  com.example.project: "my-app"
+
+x-web-common: &web_common
+  image: nginx
+  labels:
+    <<: *global_labels
+    service.type: "web"

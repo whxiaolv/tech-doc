@@ -1,0 +1,14 @@
+services:
+  db:
+    image: mysql:8.0
+    volumes:
+      - shared-data:/var/lib/mysql  # 挂载命名卷
+  web:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - shared-data:/usr/share/nginx/html  # 格式：<卷名>:<容器路径>
+
+volumes:
+  shared-data:  # 命名卷定义（默认local驱动）

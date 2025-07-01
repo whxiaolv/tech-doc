@@ -1,6 +1,6 @@
 services:
   web:
-    build:
-      context: ./build/Dockerfile1
+    build: .  # 先构建镜像
+    image: my-app:dev  # 构建后标记为该镜像名
     ports:
       - "80:80"

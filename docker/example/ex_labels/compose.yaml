@@ -1,0 +1,26 @@
+# common.yml
+x-global-labels: &global_labels
+  com.example.project: "my-app"
+
+x-web-common: &web_common
+  image: nginx
+  labels:
+    <<: *global_labels
+    service.type: "web"
+
+# docker-compose.yml
+# docker-compose.yml
+services:
+  web:
+    <<: *web_common  # 继承通用配置
+    ports:
+      - "80:80"
+
+  db:
+    image: postgres
+    labels:
+      <<: *global_labels
+      service.type: "db"
+    environment:
+      - POSTGRES_PASSWORD=your_strong_password  # 设置超级用户密码
+      - POSTGRES_DB=myapp_db  # 可选：指定数据库名称

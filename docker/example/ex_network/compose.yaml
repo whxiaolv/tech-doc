@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    networks:
+      - frontend  # 连接到 frontend 网络
+
+  db:
+    image: postgres
+    networks:
+      - backend  # 连接到 backend 网络
+
+  proxy:
+    image: nginx
+    ports:
+      - "8080:80"
+    networks:
+      - frontend  # 同时连接到两个网络
+      - backend
+
+networks:
+  frontend:  # 前端网络
+    driver: bridge
+  backend:  # 后端网络
+    driver: bridge

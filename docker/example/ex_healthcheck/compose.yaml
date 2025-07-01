@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .  # 先构建镜像
+    image: my-app:dev  # 构建后标记为该镜像名
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost" ]  # 检查命令
+      interval: 30s                # 检查间隔
+      timeout: 10s                 # 超时时间
+      retries: 3                   # 连续失败次数
+      start_period: 40s            # 启动宽限期
+    ports:
+      - "80:80"
